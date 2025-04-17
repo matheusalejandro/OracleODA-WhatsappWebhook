@@ -1,0 +1,49 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const axios = require('axios');
+
+const app = express();
+app.use(bodyParser.json());
+
+const metaApiUrl = 'https://api.metaapi.io/v2';
+
+const accountId = '<your-account-id>';
+const apiKey = '<your-api-key>';
+
+const authenticationHeaders = {
+  'X-Meta-Api-Key': apiKey,
+  'X-Meta-Api-Account-Id': accountId
+};
+
+app.post('/webhook', async (req, res) => {
+  const event = req.body;
+
+  if (event.type === 'MESSAGE_RECEIVED') {
+    const message = event.data;
+
+    // Process the incoming message and send a response using the WhatsApp API
+    // ...
+
+    // Example response to the WhatsApp API
+    const response = {
+      "phone": message.phone,
+      "body": "Hello from the Meta WhatsApp API!",
+    };
+
+    try {
+      const apiResponse = await axios.post(`${metaApiUrl}/whatsapp/${accountId}/sendMessage`, response, {
+        headers: authenticationHeaders
+      });
+
+      console.log(apiResponse.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  res.status(200).end();
+});
+
+app.listen(3000, () => {
+  console.log('Webhook listening on port 3000');
+});

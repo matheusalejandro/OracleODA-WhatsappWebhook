@@ -1,0 +1,26 @@
+{
+  "name": "webhook-in-nodejs",
+  "version": "1.0.0",
+  "description": "webhook in nodejs using express framework - whatsapp cloud api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Ansh",
+  "license": "ISC",
+  "dependencies": {
+    "@oracle/bots-node-sdk": "^2.7.3",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "log4js": "^6.9.1",
+    "mime-to-extensions": "^1.0.2",
+    "path": "^0.12.7",
+    "underscore": "^1.13.7"
+  },
+  "keywords": []
+}
